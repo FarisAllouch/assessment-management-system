@@ -1,0 +1,17 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.main .members-section {
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+  overflow: scroll;
+}
+@media screen and (max-width: 1100px) {
+  .main .members-section .table {
+    width: 200%;
+  }
+}/*# sourceMappingURL=members.css.map */

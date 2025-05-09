@@ -1,0 +1,6 @@
+vendor
+config.php
+node_modules
+database_setup.sql
+.DS_Store
+composer.lock

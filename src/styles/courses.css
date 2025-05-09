@@ -1,0 +1,12 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.main .courses-section {
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+  overflow: scroll;
+}/*# sourceMappingURL=courses.css.map */

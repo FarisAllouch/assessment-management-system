@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+$borderRadius: 8px;
+$inputHeight: 48px;
+$transitionEasing: cubic-bezier(.4, 0, .2, 1);
+
+$primary: #2563eb;
+$primaryDark: #1e40af;
+$background: #f8fafc;
+$text: #1e293b;
+
+@mixin box-shadow($props...) {
+  box-shadow: $props;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+@mixin transition($transition...) {
+  transition: $transition;
+}
+
+html, body, .container, #app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: $text;
+  margin: 0;
+  background-color: $background;
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  overflow-y: auto;
+  background-image: url('../assets/images/softwareeng.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.form-block-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  @include transition(all .3s ease-in-out);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.form-block {
+  position: relative;
+  margin: 100px auto 0;
+  width: 400px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: $borderRadius;
+  color: $text;
+  @include box-shadow(0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06));
+}
+
+.form-block__header {
+  margin-bottom: 2rem;
+  text-align: center;
+  
+  h1 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: $text;
+    margin: 0 0 1rem;
+  }
+}
+
+.form-block__input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text;
+  }
+  
+  input {
+    height: $inputHeight;
+    padding: 0 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: $borderRadius;
+    font-size: 1rem;
+    color: $text;
+    background-color: white;
+    @include transition(all 0.2s ease);
+    
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+    
+    &::placeholder {
+      color: rgba($text, 0.5);
+    }
+  }
+}
+
+.button {
+  width: 100%;
+  height: $inputHeight;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: $primary;
+  border: none;
+  border-radius: $borderRadius;
+  cursor: pointer;
+  @include transition(all 0.2s ease);
+  
+  &:hover {
+    background-color: $primaryDark;
+  }
+  
+  &--primary {
+    background-color: $primary;
+    
+    &:hover {
+      background-color: $primaryDark;
+    }
+  }
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #fee2e2;
+  border-radius: $borderRadius;
+  border: 1px solid #fecaca;
+}

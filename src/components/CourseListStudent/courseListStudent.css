@@ -1,0 +1,53 @@
+.course-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.course-cards .course-card {
+    cursor: pointer;
+    width: 30%;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: black;
+}
+
+@media screen and (max-width: 1023px) {
+    .course-cards .course-card {
+        width: 100%;
+    }
+}
+
+.course-cards .course-card .course-code {
+    margin-right: 15px;
+}
+
+.course-cards .course-card .course-title {
+    font-weight: 600;
+}
+
+.course-grades {
+    margin-top: 20px;
+}
+
+.course-grades table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-grades table th,
+.course-grades table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.course-grades table th {
+    background-color: #f2f2f2;
+}
