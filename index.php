@@ -123,17 +123,19 @@ Flight::route('GET /', function () {
 });
 
 Flight::route('GET /*', function () {
-    $path = __DIR__ . '/dist' . $_SERVER['REQUEST_URI'];
-    if (file_exists($path) && !is_dir($path)) {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $path = realpath(__DIR__ . '/dist' . $uri);
+
+    if ($path && file_exists($path) && strpos($path, realpath(__DIR__ . '/dist')) === 0) {
         $mime = mime_content_type($path);
         header("Content-Type: $mime");
         readfile($path);
         exit;
     }
 
-    // SPA fallback
     readfile(__DIR__ . '/dist/index.html');
 });
+
 
 Flight::start();
 ?>
