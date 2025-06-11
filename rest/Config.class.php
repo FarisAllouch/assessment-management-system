@@ -2,23 +2,23 @@
 
 class Config {
     public static function DB_HOST(){
-      return 'localhost';
+      return Config::get_env("DB_HOST", 'localhost');
     }
 
     public static function DB_USERNAME(){
-      return 'root';
+      return Config::get_env("DB_USERNAME", 'root');
     }
 
     public static function DB_PASSWORD(){
-      return 'palestine';  // Default XAMPP MySQL root password is empty
+      return Config::get_env("DB_PASSWORD", 'palestine');
     }
 
     public static function DB_SCHEMA(){
-      return 'gms';
+      return Config::get_env("DB_NAME", 'gms');
     }
 
     public static function DB_PORT(){
-        return 3306;
+        return Config::get_env("DB_PORT", 3306);
     }
 
     public static function JWT_SECRET(){
