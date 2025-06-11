@@ -7,7 +7,7 @@ use Firebase\JWT\Key;
 
 require 'vendor/autoload.php';
 
-header('Access-Control-Allow-Origin: https://assesment-management-system-app-tovjb.ondigitalocean.app');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS, PATCH');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Access-Control-Allow-Credentials: true');
