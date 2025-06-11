@@ -119,11 +119,22 @@ function generateToken($userId, $role) {
 }
 
 Flight::route('GET /', function () {
-    readfile(__DIR__ . '/dist/index.html');
+    $html = file_get_contents(__DIR__ . '/dist/index.html');
+    // Update asset paths to be absolute
+    $html = str_replace('./assets/', '/assets/', $html);
+    $html = str_replace('./vite.svg', '/vite.svg', $html);
+    echo $html;
 });
 
 Flight::route('GET /*', function () {
-    $path = __DIR__ . '/dist' . $_SERVER['REQUEST_URI'];
+    $requestUri = $_SERVER['REQUEST_URI'];
+    $path = __DIR__ . '/dist' . $requestUri;
+    
+    // Handle API routes
+    if (strpos($requestUri, '/api/') === 0) {
+        return true; // Let the API routes handle it
+    }
+    
     if (file_exists($path) && !is_dir($path)) {
         $mime = mime_content_type($path);
         header("Content-Type: $mime");
@@ -132,7 +143,11 @@ Flight::route('GET /*', function () {
     }
 
     // SPA fallback
-    readfile(__DIR__ . '/dist/index.html');
+    $html = file_get_contents(__DIR__ . '/dist/index.html');
+    // Update asset paths to be absolute
+    $html = str_replace('./assets/', '/assets/', $html);
+    $html = str_replace('./vite.svg', '/vite.svg', $html);
+    echo $html;
 });
 
 Flight::start();

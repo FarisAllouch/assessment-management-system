@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => {
     // Build config for production
     return {
       plugins: [react()],
-      base: './'
+      base: '/'
     }
   }
 })
