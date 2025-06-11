@@ -18,15 +18,9 @@ class BaseDao {
                 'pass' => Config::DB_PASSWORD()
                 );
       
-                $options = array(
-                  PDO::MYSQL_ATTR_SSL_CA => 'https://drive.google.com/file/d/1Kd6gF0QbgjGkWS36anKuSEjZbO7CPs1j/view?usp=drive_link',
-                  PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-        
-                );
-      
               $this->table = $table;
       
-              $this->connection = new PDO( 'mysql:host=' . $db_info['host'] . ';port=' . $db_info['port'] . ';dbname=' . $db_info['name'], $db_info['user'], $db_info['pass'], $options );
+              $this->connection = new PDO( 'mysql:host=' . $db_info['host'] . ';port=' . $db_info['port'] . ';dbname=' . $db_info['name'], $db_info['user'], $db_info['pass']);
               
               $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e){
