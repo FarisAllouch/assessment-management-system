@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-
 // import and register all business logic files (services) to FlightPHP
 require_once __DIR__ . '/rest/services/StudentServices.class.php';
 require_once __DIR__ . '/rest/services/ProfessorServices.class.php';
@@ -26,15 +25,12 @@ require_once __DIR__ . '/rest/services/EnrollmentServices.class.php';
 require_once __DIR__ . '/rest/services/CourseServices.class.php';
 require_once __DIR__ . '/rest/services/AssignmentServices.class.php';
 
-
 Flight::register('studentServices', "StudentServices");
 Flight::register('professorServices', "ProfessorServices");
 Flight::register('gradeServices', "GradeServices");
 Flight::register('enrollmentServices', "EnrollmentServices");
 Flight::register('courseServices', "CourseServices");
 Flight::register('assignmentServices', "AssignmentServices");
-
-
 
 // import all routes
 require_once __DIR__ . '/rest/routes/StudentRoutes.php';
@@ -44,12 +40,9 @@ require_once __DIR__ . '/rest/routes/EnrollmentRoutes.php';
 require_once __DIR__ . '/rest/routes/CourseRoutes.php';
 require_once __DIR__ . '/rest/routes/AssignmentRoutes.php';
 
-
 Flight::route('GET /api/', function () {
     echo "Hello";
 });
-
-
 
 Flight::route('POST /api/login', function(){
     $loginData = Flight::request()->data->getData();
@@ -125,10 +118,22 @@ function generateToken($userId, $role) {
     return $token;
 }
 
+Flight::route('GET /', function () {
+    readfile(__DIR__ . '/dist/index.html');
+});
+
+Flight::route('GET /*', function () {
+    $path = __DIR__ . '/dist' . $_SERVER['REQUEST_URI'];
+    if (file_exists($path) && !is_dir($path)) {
+        $mime = mime_content_type($path);
+        header("Content-Type: $mime");
+        readfile($path);
+        exit;
+    }
+
+    // SPA fallback
+    readfile(__DIR__ . '/dist/index.html');
+});
 
 Flight::start();
-
-
-
-
 ?>
